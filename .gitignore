@@ -1,0 +1,42 @@
+# Gradle build output
+build/
+.gradle/
+out/
+
+# Gradle wrapper jar (download on first build)
+# Keep gradle-wrapper.jar for offline builds
+# !gradle/wrapper/gradle-wrapper.jar
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.classpath
+*.project
+.settings/
+
+# SQLite databases
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+logs/
+
+# Plugin data (server runtime files)
+plugins/
+
+# Environment / secrets
+.env
+*.env
+secrets.yml
+token.yml

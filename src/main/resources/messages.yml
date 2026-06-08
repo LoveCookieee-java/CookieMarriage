@@ -1,0 +1,63 @@
+# ─────────────────────────────────────────────────────────
+#  MarriageCraft — messages.yml
+#  Hỗ trợ mã màu kiểu &a, &b, &c, ...
+# ─────────────────────────────────────────────────────────
+
+prefix: "&6[&eMarriage&6] &r"
+
+general:
+  not-married: "%prefix%&cBạn chưa kết hôn với ai."
+  player-not-found: "%prefix%&cKhông tìm thấy player &e%player%&c."
+  player-offline: "%prefix%&cPlayer &e%player% &cđang offline."
+  no-permission: "%prefix%&cBạn không có quyền dùng lệnh này."
+  usage-marry: "%prefix%&eUsage: /marry <player> &7| /marry accept &7| /marry deny"
+  usage-marriage: "%prefix%&eUsage: /marriage <balance | info | help>"
+  help: |-
+    &6&m──────────────────────────────
+    &e&lMarriageCraft &7— Commands
+    &6/marry <player>  &7— Gửi lời cầu hôn
+    &6/marry accept    &7— Chấp nhận lời cầu hôn
+    &6/marry deny      &7— Từ chối lời cầu hôn
+    &6/divorce         &7— Ly hôn
+    &6/marriage balance &7— Xem số dư chung
+    &6/marriage info   &7— Thông tin hôn nhân
+    &6&m──────────────────────────────
+
+marry:
+  proposal-sent: "%prefix%&aBạn đã gửi lời cầu hôn đến &e%player%&a. Hết hạn sau &e%timeout%&a giây."
+  proposal-received: "%prefix%&e%player% &ađã gửi lời cầu hôn cho bạn! &bGõ /marry accept &ađể đồng ý hoặc &c/marry deny &ađể từ chối."
+  proposal-expired-proposer: "%prefix%&cLời cầu hôn của bạn đến &e%player% &cđã hết hạn."
+  proposal-expired-target: "%prefix%&cLời cầu hôn từ &e%player% &cđã hết hạn."
+  proposal-denied-denier: "%prefix%&cBạn đã từ chối lời cầu hôn từ &e%player%&c."
+  proposal-denied-proposer: "%prefix%&e%player% &cđã từ chối lời cầu hôn của bạn."
+  no-proposal: "%prefix%&cBạn không có lời cầu hôn nào đang chờ."
+  proposer-offline: "%prefix%&cNgười đã cầu hôn bạn hiện đang offline."
+  already-married-self: "%prefix%&cBạn đã kết hôn rồi! Hãy ly hôn trước."
+  already-married-target: "%prefix%&e%player% &cđã kết hôn rồi."
+  cannot-self-marry: "%prefix%&cBạn không thể tự cầu hôn chính mình."
+  proposal-pending: "%prefix%&cBạn đang có lời cầu hôn đang chờ. Hủy trước hoặc chờ hết hạn."
+  success: "&6❤ &e%player1% &6và &e%player2% &6đã chính thức kết hôn! &6❤"
+
+divorce:
+  not-married: "%prefix%&cBạn chưa kết hôn với ai."
+  success: "&c💔 &e%player1% &cvà &e%player2% &cđã ly hôn."
+  each-received: "%prefix%&aBạn nhận lại &e%amount% &atừ tài khoản chung."
+  economy-error: "%prefix%&cLỗi khi xử lý tài khoản khi ly hôn. Liên hệ admin."
+
+economy:
+  combined-balance: "%prefix%&aTài khoản chung &e(%couple%)&a: &6%balance%"
+  combined-increased: "%prefix%&aTài khoản chung tăng &e+%amount%&a. Tổng: &6%balance%"
+  combined-decreased: "%prefix%&cTài khoản chung giảm &e-%amount%&c. Còn lại: &6%balance%"
+
+marriage:
+  info: |-
+    %prefix%&6&m──────────────────────
+    &e&l%couple%
+    &aKết hôn: &f%married_date%
+    &aStreak: &e%streak% &7ngày
+    &aSession hôm nay: &e%session% &7phút
+    &6&m──────────────────────
+
+attendance:
+  streak-achieved: "&6✦ &aCặp đôi &e%couple% &ađã điểm danh ngày thứ &6%streak%&a! Chúc mừng!"
+  streak-reset: "%prefix%&cStreak của &e%couple% &cđã bị reset vì không online đủ thời gian."

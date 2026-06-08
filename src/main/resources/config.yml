@@ -1,0 +1,25 @@
+﻿# ─────────────────────────────────────────────────────────
+#  MarriageCraft — config.yml
+# ─────────────────────────────────────────────────────────
+
+economy:
+  # Thông báo cho partner khi tài khoản chung thay đổi
+  notify-transactions: true
+  # Interval poll số dư Vault (ticks). 200 ticks = 10 giây
+  poll-interval-ticks: 200
+  # Ngưỡng thay đổi tối thiểu để trigger thông báo (tránh floating point noise)
+  notify-threshold: 0.01
+  # Chia đều tiền khi ly hôn
+  split-on-divorce: true
+
+proposal:
+  # Số giây trước khi lời cầu hôn hết hạn
+  timeout-seconds: 60
+
+attendance:
+  # Số phút cả 2 phải online cùng nhau để được tính 1 ngày điểm danh
+  required-minutes: 60
+  # Scheduler check interval (ticks). 1200 ticks = 60 giây = 1 phút
+  check-interval-ticks: 1200
+  # Timezone cho việc tính ngày điểm danh
+  timezone: "Asia/Ho_Chi_Minh"

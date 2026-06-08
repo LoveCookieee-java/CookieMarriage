@@ -1,0 +1,40 @@
+name: CookieMarriage
+version: '${version}'
+main: dev.marriage.MarriagePlugin
+api-version: '1.21'
+authors: [ CookieMarriage ]
+description: "Kết hôn, chia sẻ tài khoản kinh tế, tích streak điểm danh cùng nhau."
+website: https://github.com/
+
+depend:
+  - Vault
+
+commands:
+  marry:
+    description: Gửi lời cầu hôn hoặc chấp nhận / từ chối lời cầu hôn
+    usage: /marry <player> | /marry accept | /marry deny
+    permission: marriage.marry
+    aliases: [ propose ]
+  divorce:
+    description: Ly hôn với người bạn đời hiện tại
+    usage: /divorce
+    permission: marriage.divorce
+  marriage:
+    description: Xem thông tin hôn nhân, số dư chung, streak
+    usage: /marriage <balance|info|help>
+    permission: marriage.use
+    aliases: [ m ]
+
+permissions:
+  marriage.marry:
+    description: Cho phép gửi lời cầu hôn
+    default: true
+  marriage.divorce:
+    description: Cho phép ly hôn
+    default: true
+  marriage.use:
+    description: Cho phép dùng lệnh /marriage
+    default: true
+  marriage.admin:
+    description: Quyền admin (reload, force-divorce, v.v.)
+    default: op

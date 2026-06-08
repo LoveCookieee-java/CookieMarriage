@@ -1,0 +1,49 @@
+﻿# ─────────────────────────────────────────────────────────
+#  MarriageCraft — reward.yml
+#
+#  Cấu hình phần thưởng theo chuỗi điểm danh (streak).
+#
+#  milestone:
+#    <số_ngày_streak>:
+#      - "lệnh console 1"
+#      - "lệnh console 2"
+#
+#  Placeholders trong lệnh:
+#    %couple%   — Thay bằng tên từng player (lệnh chạy 2 lần)
+#    %player1%  — Tên player 1 của cặp đôi
+#    %player2%  — Tên player 2 của cặp đôi
+#    %streak%   — Số streak hiện tại
+#
+#  Ví dụ: "eco give %couple% 1000"
+#   → Chạy: "eco give PlayerA 1000"
+#   → Chạy: "eco give PlayerB 1000"
+# ─────────────────────────────────────────────────────────
+
+milestone:
+  1:
+    - "eco give %couple% 500"
+    - "broadcast &6[Marriage] &eCặp đôi &b%player1% &evà &b%player2% &eđã điểm danh ngày đầu tiên!"
+
+  3:
+    - "eco give %couple% 1000"
+
+  7:
+    - "eco give %couple% 2000"
+    - "broadcast &6[Marriage] &eCặp đôi &b%player1% &evà &b%player2% &eđạt chuỗi &67 ngày&e! Tuyệt vời!"
+
+  14:
+    - "eco give %couple% 5000"
+    - "give %player1% minecraft:golden_apple 5"
+    - "give %player2% minecraft:golden_apple 5"
+
+  30:
+    - "eco give %couple% 10000"
+    - "broadcast &6[Marriage] &c❤ &eCặp đôi &b%player1% &evà &b%player2% &eđạt chuỗi &c30 ngày&e! Huyền thoại! &c❤"
+    - "give %player1% minecraft:diamond 5"
+    - "give %player2% minecraft:diamond 5"
+
+  100:
+    - "eco give %couple% 50000"
+    - "broadcast &6[Marriage] &d✦ &eCặp đôi &b%player1% &evà &b%player2% &eđạt chuỗi &d100 ngày&e! Không thể tin được! &d✦"
+    - "give %player1% minecraft:netherite_ingot 1"
+    - "give %player2% minecraft:netherite_ingot 1"

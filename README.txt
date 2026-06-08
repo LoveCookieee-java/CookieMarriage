@@ -9,9 +9,7 @@ Supported Version: Paper 1.21+
 Java Requirement: Java 21+
 License: MIT License
 
---------------------------------------------------------------------------------
 FEATURES
---------------------------------------------------------------------------------
 
 - Marriage System: Propose, accept, or deny marriage between two players.
 - Shared Economy: Married couples share a combined Vault balance with real-time
@@ -23,18 +21,14 @@ FEATURES
 - SQLite Storage: Lightweight, zero-setup database (bundled JDBC driver).
 - Memory Safe: No player reference leaks, proper task cleanup, WAL-mode SQLite.
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 - Paper: 1.21+ (Spigot is NOT supported)
 - Vault: Any version (Economy bridge)
 - Economy Plugin: Any Vault-compatible plugin (EssentialsX, CMI, etc.)
 - Java: 21+ (Must match server JDK version)
 
---------------------------------------------------------------------------------
 INSTALLATION
---------------------------------------------------------------------------------
 
 1. Download CookieMarriage-v1.0.jar.
 2. Place the JAR file in your server's "plugins/" folder.
@@ -43,9 +37,7 @@ INSTALLATION
 5. Edit "plugins/CookieMarriage/config.yml" and "reward.yml" to your liking.
 6. Use "/plugman reload CookieMarriage" or restart the server to apply changes.
 
---------------------------------------------------------------------------------
 COMMANDS & PERMISSIONS
---------------------------------------------------------------------------------
 
 * Commands:
   - /marry <player>    : Send a marriage proposal.
@@ -68,12 +60,10 @@ COMMANDS & PERMISSIONS
   - marriage.divorce  : true (defaults to all players)
   - marriage.use      : true (defaults to all players)
 
---------------------------------------------------------------------------------
 CONFIGURATION REFERENCE
---------------------------------------------------------------------------------
 
 * config.yml:
-------------------------------------------------------------
+
 economy:
   notify-transactions: true       # Notify both players when balance changes
   poll-interval-ticks: 200        # How often to check balance (ticks, default 10s)
@@ -87,10 +77,9 @@ attendance:
   required-minutes: 60            # Minutes both must be online together per day
   check-interval-ticks: 1200      # Scheduler interval (ticks, default 60s)
   timezone: "Asia/Ho_Chi_Minh"    # Timezone for daily streak reset
-------------------------------------------------------------
 
 * reward.yml:
-------------------------------------------------------------
+
 milestone:
   1:
     - "eco give %couple% 500"
@@ -102,7 +91,6 @@ milestone:
   100:
     - "eco give %couple% 50000"
     - "lp user %couple% permission set vip.rank true"
-------------------------------------------------------------
 
 * Reward Placeholders:
   - %couple%    : Runs command twice — once per player.
@@ -110,9 +98,7 @@ milestone:
   - %player2%   : Player 2's name.
   - %streak%    : Current streak count.
 
---------------------------------------------------------------------------------
 BUILDING FROM SOURCE
---------------------------------------------------------------------------------
 
 To build this plugin yourself:
 
@@ -128,9 +114,7 @@ To build this plugin yourself:
    ./gradlew spotbugsMain
    (Report is located in: build/reports/spotbugs/main.html)
 
---------------------------------------------------------------------------------
 PROJECT STRUCTURE
---------------------------------------------------------------------------------
 
 src/main/java/dev/marriage/
 ├── MarriagePlugin.java          <- Plugin entry point
@@ -143,9 +127,7 @@ src/main/java/dev/marriage/
 ├── scheduler/                   <- Attendance ticker
 └── service/                     <- Services (Marriage, Economy, Attendance)
 
---------------------------------------------------------------------------------
 LICENSE
---------------------------------------------------------------------------------
 
 This project is licensed under the MIT License.
 ================================================================================

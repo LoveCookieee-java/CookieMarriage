@@ -44,3 +44,8 @@ token.yml
 # Spotbugs exclude configuration
 spotbugs-exclude.xml
 
+# Local readmes to be excluded from GitHub
+README.txt
+README_VI.md
+
+

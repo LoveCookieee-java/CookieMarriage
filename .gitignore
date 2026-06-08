@@ -40,3 +40,7 @@ plugins/
 *.env
 secrets.yml
 token.yml
+
+# Spotbugs exclude configuration
+spotbugs-exclude.xml
+

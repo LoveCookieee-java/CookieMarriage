@@ -47,5 +47,7 @@ spotbugs-exclude.xml
 # Local readmes to be excluded from GitHub
 README.txt
 README_VI.md
+readme_vi.txt
+
 
 

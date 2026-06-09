@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────
+#  CookieMarriage — ring.yml
+#
+#  Cấu hình nhẫn cưới yêu cầu khi gửi lời cầu hôn.
+#  Nhẫn sẽ bị tiêu thụ khi cặp đôi thành hôn thành công.
+# ─────────────────────────────────────────────────────────
+
+# Bật / tắt yêu cầu nhẫn cưới.
+# false = ai cũng cưới được mà không cần nhẫn.
+require-ring: true
+
+# Danh sách item hợp lệ làm nhẫn cưới.
+#
+# Định dạng:
+#   VANILLA;<Material>           — item thuần Minecraft  (tên Material, không phân biệt hoa thường)
+#   MMOITEMS;<TYPE>;<ID>        — item từ MMOItems       (ví dụ: MMOITEMS;RING;wedding_ring)
+#   ITEMEDIT;<ID>               — item từ ItemEdit       (ví dụ: ITEMEDIT;wedding_ring)
+#   ITEMSADDER;<namespace:id>   — item từ ItemsAdder     (ví dụ: ITEMSADDER;mypack:wedding_ring)
+#
+# Chỉ cần khớp 1 item bất kỳ trong danh sách là hợp lệ.
+ring-items:
+  # ── Vanilla ──────────────────────────────────────────
+  - "VANILLA;DIAMOND"
+
+  # ── MMOItems ─────────────────────────────────────────
+  # - "MMOITEMS;RING;wedding_ring"
+
+  # ── ItemEdit ─────────────────────────────────────────
+  # - "ITEMEDIT;wedding_ring"
+
+  # ── ItemsAdder ───────────────────────────────────────
+  # - "ITEMSADDER;mypack:wedding_ring"

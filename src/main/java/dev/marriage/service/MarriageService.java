@@ -56,7 +56,7 @@ public void sendProposal(Player proposer, Player target) {
         UUID proposerUuid = proposer.getUniqueId();
         UUID targetUuid   = target.getUniqueId();
 
-if (proposerUuid.equals(targetUuid)) {
+        if (proposerUuid.equals(targetUuid)) {
             proposer.sendMessage(plugin.getMsg("marry.cannot-self-marry"));
             return;
         }
@@ -73,7 +73,14 @@ if (proposerUuid.equals(targetUuid)) {
             return;
         }
 
-PendingProposal reverse = proposals.get(targetUuid);
+        // Kiểm tra nhẫn cưới (nếu được bật trong ring.yml)
+        if (plugin.getRingConfig().isRequireRing()
+                && !plugin.getRingChecker().hasRing(proposer)) {
+            proposer.sendMessage(plugin.getMsg("marry.no-ring"));
+            return;
+        }
+
+        PendingProposal reverse = proposals.get(targetUuid);
         if (reverse != null && reverse.getTargetUuid().equals(proposerUuid)) {
             reverse.cancelExpireTask();
             proposals.remove(targetUuid);
@@ -151,15 +158,21 @@ private void performMarriage(Player p1, Player p2) {
                 Instant.now().toEpochMilli(),
                 0, null, combinedBalance);
 
-plugin.getDatabaseManager().getCoupleRepository().save(couple);
+        plugin.getDatabaseManager().getCoupleRepository().save(couple);
 
-coupleCache.put(p1.getUniqueId(), couple);
+        coupleCache.put(p1.getUniqueId(), couple);
         coupleCache.put(p2.getUniqueId(), couple);
 
-plugin.getAttendanceService().initializeCouple(couple);
+        plugin.getAttendanceService().initializeCouple(couple);
         plugin.getEconomyService().initializeCouple(couple);
 
-String msg = plugin.getMsg("marry.success",
+        // Tiêu thụ nhẫn cưới của người đã cầu hôn (p1) khi thành hôn thành công
+        if (plugin.getRingConfig().isRequireRing()) {
+            if (plugin.getRingChecker().consumeRing(p1)) {
+                p1.sendMessage(plugin.getMsg("marry.ring-consumed"));
+            }
+        }
+        String msg = plugin.getMsg("marry.success",
                 "%player1%", p1.getName(), "%player2%", p2.getName());
         Bukkit.broadcast(plugin.msgToComponent(msg));
 

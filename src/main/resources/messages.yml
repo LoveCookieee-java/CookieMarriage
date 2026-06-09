@@ -37,6 +37,8 @@ marry:
   cannot-self-marry: "%prefix%&cBạn không thể tự cầu hôn chính mình."
   proposal-pending: "%prefix%&cBạn đang có lời cầu hôn đang chờ. Hủy trước hoặc chờ hết hạn."
   success: "&6❤ &e%player1% &6và &e%player2% &6đã chính thức kết hôn! &6❤"
+  no-ring: "%prefix%&cBạn cần có &e&lNhẫn Cưới &ctrong túi đồ để gửi lời cầu hôn!"
+  ring-consumed: "%prefix%&aNhẫn cưới của bạn đã được trao đi. Chúc mừng! &6❤"
 
 divorce:
   not-married: "%prefix%&cBạn chưa kết hôn với ai."

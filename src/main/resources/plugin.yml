@@ -9,6 +9,11 @@ website: https://github.com/
 depend:
   - Vault
 
+softdepend:
+  - MMOItems
+  - ItemsAdder
+  - ItemEdit
+
 commands:
   marry:
     description: Gửi lời cầu hôn hoặc chấp nhận / từ chối lời cầu hôn

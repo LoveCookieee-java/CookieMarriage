@@ -67,8 +67,6 @@ tasks {
         archiveClassifier.set("")
         // Relocate SQLite to avoid conflict with other plugins
         relocate("org.sqlite", "dev.marriage.libs.sqlite")
-        // Keep only what we need
-        minimize()
     }
 
     // Build always produces the shadow jar

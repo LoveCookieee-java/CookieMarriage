@@ -69,6 +69,7 @@
 
 | Permission | Default | Description |
 |-----------|---------|-------------|
+| `marriage.player` | `true` | Parent permission for all player features (marry, divorce, use) |
 | `marriage.marry` | `true` | Use `/marry` |
 | `marriage.divorce` | `true` | Use `/divorce` |
 | `marriage.use` | `true` | Use `/marriage` subcommands |

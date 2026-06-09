@@ -357,19 +357,16 @@ If a transaction fails (economy error), it is logged and the other player's bala
 
 ### Default Setup (all players can marry)
 
-No configuration needed — all three permissions default to `true`.
+No configuration needed — all permissions default to `true` via the parent permission `marriage.player`.
 
 ### Restricting Marriage (VIP only)
 
 ```bash
 # Deny marriage for default group
-lp group default permission set marriage.marry false
-lp group default permission set marriage.divorce false
+lp group default permission set marriage.player false
 
 # Allow for VIP
-lp group vip permission set marriage.marry true
-lp group vip permission set marriage.divorce true
-lp group vip permission set marriage.use true
+lp group vip permission set marriage.player true
 ```
 
 ---

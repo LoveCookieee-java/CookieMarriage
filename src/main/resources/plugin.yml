@@ -31,6 +31,13 @@ commands:
     aliases: [ m ]
 
 permissions:
+  marriage.player:
+    description: Quyền mặc định cho người chơi thường (marry, divorce, use)
+    default: true
+    children:
+      marriage.marry: true
+      marriage.divorce: true
+      marriage.use: true
   marriage.marry:
     description: Cho phép gửi lời cầu hôn
     default: true

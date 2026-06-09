@@ -1,6 +1,4 @@
-﻿# ─────────────────────────────────────────────────────────
-#  MarriageCraft — config.yml
-# ─────────────────────────────────────────────────────────
+# MarriageCraft — config.yml
 
 economy:
   # Thông báo cho partner khi tài khoản chung thay đổi
@@ -15,6 +13,8 @@ economy:
 proposal:
   # Số giây trước khi lời cầu hôn hết hạn
   timeout-seconds: 60
+  # Thời gian chờ sau khi ly hôn trước khi có thể kết hôn lại (ngày)
+  divorce-cooldown-days: 7
 
 attendance:
   # Số phút cả 2 phải online cùng nhau để được tính 1 ngày điểm danh

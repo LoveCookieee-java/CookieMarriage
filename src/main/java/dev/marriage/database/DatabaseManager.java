@@ -64,21 +64,29 @@ try (Statement stmt = connection.createStatement()) {
                 )
                 """;
 
-final String idx1 = "CREATE UNIQUE INDEX IF NOT EXISTS idx_couples_p1 ON couples(player1_uuid)";
+        final String idx1 = "CREATE UNIQUE INDEX IF NOT EXISTS idx_couples_p1 ON couples(player1_uuid)";
         final String idx2 = "CREATE UNIQUE INDEX IF NOT EXISTS idx_couples_p2 ON couples(player2_uuid)";
+
+        final String cooldowns = """
+                CREATE TABLE IF NOT EXISTS divorce_cooldowns (
+                    player_uuid    TEXT PRIMARY KEY,
+                    cooldown_until INTEGER NOT NULL
+                )
+                """;
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(couples);
             stmt.execute(idx1);
             stmt.execute(idx2);
+            stmt.execute(cooldowns);
         }
     }
 
-public Connection getConnection() {
+    public Connection getConnection() {
         return connection;
     }
 
-public CoupleRepository getCoupleRepository() {
+    public CoupleRepository getCoupleRepository() {
         return coupleRepository;
     }
 

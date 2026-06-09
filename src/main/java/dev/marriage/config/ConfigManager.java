@@ -29,9 +29,13 @@ public double getNotifyThreshold() {
         return plugin.getConfig().getBoolean("economy.split-on-divorce", true);
     }
 
-public int getProposalTimeoutSeconds() {
+    public int getProposalTimeoutSeconds() {
         int value = plugin.getConfig().getInt("proposal.timeout-seconds", 60);
         return Math.max(10, value);
+    }
+
+    public int getDivorceCooldownDays() {
+        return plugin.getConfig().getInt("proposal.divorce-cooldown-days", 7);
     }
 
 public int getRequiredMinutes() {

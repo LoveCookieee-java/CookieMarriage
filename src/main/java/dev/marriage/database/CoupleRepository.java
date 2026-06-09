@@ -136,7 +136,43 @@ private CoupleData mapRow(ResultSet rs) throws SQLException {
         return new CoupleData(p1, p2, p1Name, p2Name, marriedAt, streak, lastCheckin, balance);
     }
 
-private static String dateToString(LocalDate date) {
+    private static String dateToString(LocalDate date) {
         return (date != null) ? date.toString() : null;
+    }
+
+    public void saveDivorceCooldown(UUID playerUuid, long cooldownUntil) {
+        final String sql = "REPLACE INTO divorce_cooldowns (player_uuid, cooldown_until) VALUES (?, ?)";
+        try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
+            ps.setString(1, playerUuid.toString());
+            ps.setLong(2, cooldownUntil);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            plugin.getLogger().log(Level.SEVERE, "Failed to save divorce cooldown for player: " + playerUuid, e);
+        }
+    }
+
+    public long getDivorceCooldown(UUID playerUuid) {
+        final String sql = "SELECT cooldown_until FROM divorce_cooldowns WHERE player_uuid = ?";
+        try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
+            ps.setString(1, playerUuid.toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getLong("cooldown_until");
+                }
+            }
+        } catch (SQLException e) {
+            plugin.getLogger().log(Level.SEVERE, "Failed to get divorce cooldown for player: " + playerUuid, e);
+        }
+        return 0L;
+    }
+
+    public void removeDivorceCooldown(UUID playerUuid) {
+        final String sql = "DELETE FROM divorce_cooldowns WHERE player_uuid = ?";
+        try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
+            ps.setString(1, playerUuid.toString());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            plugin.getLogger().log(Level.SEVERE, "Failed to remove divorce cooldown for player: " + playerUuid, e);
+        }
     }
 }

@@ -68,6 +68,23 @@ public void sendProposal(Player proposer, Player target) {
             proposer.sendMessage(plugin.getMsg("marry.already-married-target", "%player%", target.getName()));
             return;
         }
+
+        long proposerCooldown = plugin.getDatabaseManager().getCoupleRepository().getDivorceCooldown(proposerUuid);
+        if (proposerCooldown > System.currentTimeMillis()) {
+            proposer.sendMessage(plugin.getMsg("marry.cooldown-self", "%time%", formatTimeRemaining(proposerCooldown)));
+            return;
+        } else if (proposerCooldown > 0) {
+            plugin.getDatabaseManager().getCoupleRepository().removeDivorceCooldown(proposerUuid);
+        }
+
+        long targetCooldown = plugin.getDatabaseManager().getCoupleRepository().getDivorceCooldown(targetUuid);
+        if (targetCooldown > System.currentTimeMillis()) {
+            proposer.sendMessage(plugin.getMsg("marry.cooldown-target", "%player%", target.getName(), "%time%", formatTimeRemaining(targetCooldown)));
+            return;
+        } else if (targetCooldown > 0) {
+            plugin.getDatabaseManager().getCoupleRepository().removeDivorceCooldown(targetUuid);
+        }
+
         if (proposals.containsKey(proposerUuid)) {
             proposer.sendMessage(plugin.getMsg("marry.proposal-pending"));
             return;
@@ -198,19 +215,26 @@ public void divorce(Player requester) {
         double total = b1 + b2;
         double each  = total / 2.0;
 
-plugin.getEconomyService().removeCouple(couple);
+        plugin.getEconomyService().removeCouple(couple);
         plugin.getAttendanceService().removeCouple(couple);
 
-plugin.getDatabaseManager().getCoupleRepository().deleteByPlayer(couple.getPlayer1Uuid());
+        plugin.getDatabaseManager().getCoupleRepository().deleteByPlayer(couple.getPlayer1Uuid());
         coupleCache.remove(couple.getPlayer1Uuid());
         coupleCache.remove(couple.getPlayer2Uuid());
 
-if (plugin.getConfigManager().isSplitOnDivorce() && total > 0) {
+        int cooldownDays = plugin.getConfigManager().getDivorceCooldownDays();
+        if (cooldownDays > 0) {
+            long cooldownUntil = System.currentTimeMillis() + (cooldownDays * 24L * 3600L * 1000L);
+            plugin.getDatabaseManager().getCoupleRepository().saveDivorceCooldown(couple.getPlayer1Uuid(), cooldownUntil);
+            plugin.getDatabaseManager().getCoupleRepository().saveDivorceCooldown(couple.getPlayer2Uuid(), cooldownUntil);
+        }
+
+        if (plugin.getConfigManager().isSplitOnDivorce() && total > 0) {
             splitBalance(op1, b1, each);
             splitBalance(op2, b2, each);
         }
 
-String divorceMsg = plugin.getMsg("divorce.success",
+        String divorceMsg = plugin.getMsg("divorce.success",
                 "%player1%", couple.getPlayer1Name(),
                 "%player2%", couple.getPlayer2Name());
         Bukkit.broadcast(plugin.msgToComponent(divorceMsg));
@@ -273,5 +297,25 @@ private PendingProposal findProposalTargeting(UUID targetUuid) {
 
     private static String formatMoney(double amount) {
         return String.format("%.2f", amount);
+    }
+
+    private String formatTimeRemaining(long until) {
+        long diffMs = until - System.currentTimeMillis();
+        if (diffMs <= 0) {
+            return "0 phút";
+        }
+        long diffSecs = diffMs / 1000;
+        long days = diffSecs / (24 * 3600);
+        long hours = (diffSecs % (24 * 3600)) / 3600;
+        long minutes = (diffSecs % 3600) / 60;
+        StringBuilder sb = new StringBuilder();
+        if (days > 0) {
+            sb.append(days).append(" ngày ");
+        }
+        if (hours > 0 || days > 0) {
+            sb.append(hours).append(" giờ ");
+        }
+        sb.append(minutes).append(" phút");
+        return sb.toString().trim();
     }
 }

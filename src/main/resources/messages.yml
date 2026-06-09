@@ -1,7 +1,5 @@
-# ─────────────────────────────────────────────────────────
-#  MarriageCraft — messages.yml
-#  Hỗ trợ mã màu kiểu &a, &b, &c, ...
-# ─────────────────────────────────────────────────────────
+# MarriageCraft — messages.yml
+# Hỗ trợ mã màu kiểu &a, &b, &c, ...
 
 prefix: "&6[&eMarriage&6] &r"
 
@@ -39,6 +37,8 @@ marry:
   success: "&6❤ &e%player1% &6và &e%player2% &6đã chính thức kết hôn! &6❤"
   no-ring: "%prefix%&cBạn cần có &e&lNhẫn Cưới &ctrong túi đồ để gửi lời cầu hôn!"
   ring-consumed: "%prefix%&aNhẫn cưới của bạn đã được trao đi. Chúc mừng! &6❤"
+  cooldown-self: "%prefix%&cBạn vừa ly hôn gần đây. Hãy đợi thêm &e%time% &cđể có thể kết hôn lại!"
+  cooldown-target: "%prefix%&e%player% &cvừa ly hôn gần đây. Hãy đợi thêm &e%time% &ctrước khi cầu hôn họ!"
 
 divorce:
   not-married: "%prefix%&cBạn chưa kết hôn với ai."

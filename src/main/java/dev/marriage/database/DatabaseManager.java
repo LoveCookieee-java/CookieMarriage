@@ -26,8 +26,7 @@ public boolean initialize() {
 
             File dbFile = new File(dataFolder, "marriage.db");
 
-Class.forName("org.sqlite.JDBC");
-
+            // JDBC 4.0+ auto-registers drivers via ServiceLoader — no Class.forName() needed
             connection = DriverManager.getConnection("jdbc:sqlite:" + dbFile.getAbsolutePath());
 
 try (Statement stmt = connection.createStatement()) {
@@ -44,8 +43,6 @@ try (Statement stmt = connection.createStatement()) {
             plugin.getLogger().info("SQLite database initialised: " + dbFile.getName());
             return true;
 
-        } catch (ClassNotFoundException e) {
-            plugin.getLogger().log(Level.SEVERE, "SQLite JDBC driver not found — is the jar shaded correctly?", e);
         } catch (SQLException e) {
             plugin.getLogger().log(Level.SEVERE, "Failed to open SQLite database", e);
         }

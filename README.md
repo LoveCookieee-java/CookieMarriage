@@ -18,6 +18,8 @@
 ## ✨ Features
 
 - 💍 **Marriage System** — Propose, accept, or deny marriage between two players
+- 👑 **Wedding Ring Requirement** — Require specific items (Vanilla, MMOItems, ItemEdit, ItemsAdder) to propose (consumed on marriage)
+- ⏳ **Remarry Cooldown** — Configurable waiting period after divorcing before marrying again (default 7 days)
 - 💰 **Shared Economy** — Married couples share a combined Vault balance with real-time change notifications
 - 💔 **Divorce** — Split the combined balance 50/50 on divorce
 - 📅 **Daily Streak** — Track how long couples play together each day (Vietnam timezone `Asia/Ho_Chi_Minh`)
@@ -86,11 +88,24 @@ economy:
 
 proposal:
   timeout-seconds: 60             # How long a proposal lasts before expiring
+  divorce-cooldown-days: 7        # Cooldown days before remarrying (default 7, 0 to disable)
 
 attendance:
   required-minutes: 60            # Minutes both must be online together per day
   check-interval-ticks: 1200      # Scheduler interval (ticks, default 60s)
   timezone: "Asia/Ho_Chi_Minh"    # Timezone for daily streak reset
+
+### `ring.yml`
+
+Configure the items required to propose. Support soft-dependencies (no external compile dependencies needed):
+
+```yaml
+require-ring: true               # Require a ring to propose
+ring-items:
+  - "VANILLA;DIAMOND"            # Format: VANILLA;<Material>
+  # - "MMOITEMS;RING;wedding_ring" # Format: MMOITEMS;<TYPE>;<ID>
+  # - "ITEMEDIT;wedding_ring"      # Format: ITEMEDIT;<ID>
+  # - "ITEMSADDER;mypack:wedding_ring" # Format: ITEMSADDER;<namespace:id>
 ```
 
 ### `reward.yml`
@@ -143,8 +158,9 @@ cd CookieMarriage
 src/main/java/dev/marriage/
 ├── MarriagePlugin.java          ← Plugin entry point
 ├── command/                     ← /marry, /divorce, /marriage
-├── config/                      ← ConfigManager, MessageConfig
+├── config/                      ← ConfigManager, MessageConfig, RingConfig
 ├── database/                    ← SQLite (DatabaseManager, CoupleRepository)
+├── item/                        ← RingChecker, RingItem
 ├── listener/                    ← PlayerJoin, PlayerQuit events
 ├── model/                       ← CoupleData, PendingProposal
 ├── reward/                      ← Milestone reward dispatcher

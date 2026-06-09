@@ -109,6 +109,11 @@ proposal:
   # Seconds before an unanswered proposal expires automatically.
   # Minimum enforced: 10 seconds.
 
+  divorce-cooldown-days: 7
+  # Cooldown time (in days) after a player divorces before they
+  # can send or accept new proposals.
+  # Default: 7 days. Set to 0 to disable.
+
 attendance:
   required-minutes: 60
   # Minutes BOTH players must be online simultaneously in one day
@@ -126,6 +131,40 @@ attendance:
   #   "America/New_York"    → EST/EDT
   #   "Europe/London"       → GMT/BST
   #   "UTC"                 → Universal
+```
+
+### `ring.yml` — Wedding Ring Configuration
+
+Configure the items required to propose:
+
+```yaml
+require-ring: true
+# Enable or disable the wedding ring requirement.
+# true  = Players must have a valid ring in their inventory to propose.
+# false = Marriage is free, no ring required.
+
+ring-items:
+# List of valid items that can be used as wedding rings.
+# Proposers only need to hold one matching item from this list.
+#
+# Format:
+#   - "VANILLA;<Material>"
+#     Any vanilla Minecraft item (material names are case-insensitive).
+#     Example: "VANILLA;DIAMOND"
+#
+#   - "MMOITEMS;<TYPE>;<ID>"
+#     Items from MMOItems (type and id are case-insensitive).
+#     Example: "MMOITEMS;RING;wedding_ring"
+#
+#   - "ITEMEDIT;<ID>"
+#     Custom items from ItemEdit (id is case-insensitive).
+#     Example: "ITEMEDIT;wedding_ring"
+#
+#   - "ITEMSADDER;<namespace:id>"
+#     Custom items from ItemsAdder (id is case-insensitive).
+#     Example: "ITEMSADDER;mypack:wedding_ring"
+ring-items:
+  - "VANILLA;DIAMOND"
 ```
 
 ### `messages.yml` — Customisation
@@ -148,6 +187,10 @@ marry:
   proposal-denied-denier: "%prefix%&cYou denied &e%player%'s &cproposal."
   proposal-denied-proposer: "%prefix%&e%player% &cdenied your proposal."
   success: "%prefix%&d❤ &e%player1% &dand &e%player2% &dare now married! &d❤"
+  no-ring: "%prefix%&cYou need a &e&lWedding Ring &cin your inventory to propose!"
+  ring-consumed: "%prefix%&aYour wedding ring has been given away. Congratulations! &6❤"
+  cooldown-self: "%prefix%&cYou divorced recently. Please wait &e%time% &cto marry again!"
+  cooldown-target: "%prefix%&e%player% &cdivorced recently. Please wait &e%time% &cbefore proposing!"
 
 divorce:
   not-married: "%prefix%&cYou are not married."
